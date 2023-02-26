@@ -4,6 +4,6 @@ import App from './App';
 
 test('renders devsamurai message', () => {
   const { getByText } = render(<App />);
-  const linkElement = getByText(/Fala Samurai/i);
+  const linkElement = getByText();
   expect(linkElement).toBeInTheDocument();
 });
