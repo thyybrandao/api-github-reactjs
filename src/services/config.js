@@ -7,6 +7,7 @@ export const langColors = {
   scss: '#9b59b6',
   vue: '#1abc9c',
   php: '#3498db',
+  dart: '#3498db',
   go: '#72aed8',
   ruby: '#e74c3c',
   c: '#16a085',

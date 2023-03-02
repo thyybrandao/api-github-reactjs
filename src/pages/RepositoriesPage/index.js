@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 import { Sidebar, Main, Container, Loading } from './styles';
 import Profile from './components/Profile';
@@ -7,6 +8,7 @@ import Repositories from './components/Repositories';
 import { getLanguagesFrom, getUser, getRepos } from '../../services/api';
 
 const RepositoriesPage = () => {
+  const { login } = useParams();
   const [currentLanguage, setCurrentLanguage] = useState();
   const [user, setUser] = useState();
   const [languages, setLanguages] = useState();
@@ -16,8 +18,8 @@ const RepositoriesPage = () => {
   useEffect(() => {
     const loadData = async () => {
       const [userResponse, reposResponse] = await Promise.all([
-        getUser('thyybrandao'),
-        getRepos('thyybrandao'),
+        getUser(login),
+        getRepos(login),
       ]);
 
       setUser(userResponse.data);
@@ -29,50 +31,6 @@ const RepositoriesPage = () => {
 
     loadData();
   }, []);
-
-  // const user = {
-  //   login: 'thybrandao',
-  //   name: 'Thyago Brandão de Paula',
-  //   avatar_url: 'https://avatars.githubusercontent.com/u/25776134?v=4',
-  //   followers: 0,
-  //   following: 0,
-  //   company: 'Freelancer',
-  //   blog: null,
-  //   location: 'Registro, São Paulo',
-  // };
-
-  // const repositories = [
-  //   {
-  //     id: '1',
-  //     name: 'Repo 1',
-  //     description: 'Desrição',
-  //     html_url: 'https://github.com/',
-  //     language: 'Javascript',
-  //   },
-  //   {
-  //     id: '2',
-  //     name: 'Repo 2',
-  //     description: 'Desrição',
-  //     html_url: 'https://github.com/',
-  //     language: 'Html',
-  //   },
-  //   {
-  //     id: '3',
-  //     name: 'Repo 3',
-  //     description: 'Desrição',
-  //     html_url: 'https://github.com/',
-  //     language: 'PHP',
-  //   },
-  //   {
-  //     id: '5',
-  //     name: 'Repo 4',
-  //     description: 'Desrição',
-  //     html_url: 'https://github.com/',
-  //     language: 'Ruby',
-  //   },
-  // ];
-
-  // const languages = getLanguagesFrom(repositories);
 
   const onFilterClick = (language) => {
     setCurrentLanguage(language);
